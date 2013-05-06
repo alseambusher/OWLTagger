@@ -4,6 +4,7 @@ import urllib2
 import json
 import math
 import sqlite3
+import config
 from config import DB
 """
 functions in this document
@@ -54,6 +55,9 @@ def get_tokens(string):
     for delete in delete_tokens:
         tokens.remove(delete)
     #remove duplicates and nulls and return
+    for token in tokens:
+        if token in config.STOP_WORDS:
+            tokens.remove(token)
     return filter(None,list(set(tokens)))
 
 #NGD

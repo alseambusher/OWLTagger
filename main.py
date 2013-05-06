@@ -11,7 +11,10 @@ distance_matrix=clustering.get_distance_matrix()
 html.distance_matrix(distance_matrix)
 
 old_distance_matrix=json.dumps(distance_matrix)
-clusters=clustering.get_all_clusters(distance_matrix)
+if config.K_MEANS_CLUSTERING:
+    clusters=clustering.get_all_clusters_k_means(distance_matrix)
+else:
+    clusters=clustering.get_all_clusters(distance_matrix)
 
 html.cluster(clusters)
 

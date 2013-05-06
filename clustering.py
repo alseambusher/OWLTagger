@@ -1,5 +1,6 @@
 import os
 import config
+import itertools
 from lib import get_NGD,get_tokens
 from wsdl import WSDL
 """
@@ -138,3 +139,26 @@ def get_all_clusters(distance_matrix=[]):
             break
     #OUTPUT format [ ['1'] ,['3','2'], ['4','5','6'] ]
     return [x.split(",") for x in clusters_matrix.iterkeys()]
+def get_all_clusters_k_means(distance_matrix=[]):
+    #initialize clusters
+    combinations=itertools.combinations([ distance for distance in distance_matrix.iterkeys()],config.K)
+    wsdls=[ distance for distance in distance_matrix.iterkeys() ]
+    max_weight=-1
+    final_cluster=[]
+    for combo in combinations:
+        new_cluster=[[x] for x in combo]
+        remaining=wsdls[:]
+        for new in new_cluster:
+            remaining.remove(new[0])
+        for element in remaining:
+            temp_max=-1
+            index=-1
+            for x in range(0,len(new_cluster)):
+                if distance_matrix[new_cluster[x][0]][element]>temp_max:
+                    temp_max=distance_matrix[new_cluster[x][0]][element]
+                    index=x
+            new_cluster[index].append(element)
+        if temp_max>max_weight:
+            max_weight=temp_max
+            final_cluster=new_cluster[:]
+    return final_cluster
