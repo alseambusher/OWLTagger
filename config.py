@@ -10,8 +10,37 @@ STOP_WORDS=['a','is','an','it','at','which','that','on','the','and','service']
 
 SERVICES_FOLDER="services/"
 
-CLUSTERING_WEIGHT_THRESHOLD=0.7
+CLUSTERING_WEIGHT_THRESHOLD=0.85
 COMPUTED_WSDL={}
 
-K_MEANS_CLUSTERING=False
-K=4
+K_MEANS_CLUSTERING=True
+K=6
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

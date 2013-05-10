@@ -9,7 +9,6 @@ def get_sentence(document):
     sentences=nltk.sent_tokenize(document)
     sentences=[nltk.word_tokenize(sent) for sent in sentences]
     sentences=[nltk.pos_tag(sent) for sent in sentences][0]
-    #TODO change this grammar
     grammar="NP: {<DT>?<JJ>*<NN>}"
     cp = nltk.RegexpParser(grammar)
     #returns a tree and an array
